@@ -4,17 +4,29 @@
             "source": "/(.*)",
             "headers": [
                 {
+                    "key": "Cache-Control",
+                    "value": "no-cache, no-store, must-revalidate"
+                },
+                {
+                    "key": "Pragma",
+                    "value": "no-cache"
+                },
+                {
+                    "key": "Expires",
+                    "value": "0"
+                },
+                {
                     "key": "Retry-After",
-                    "value": "3600"
+                    "value": "3600" // Optional: Tells bots to retry in 1 hour (in seconds)
                 }
             ]
         }
     ],
-    "rewrites": [
+    "routes": [
         {
-            "source": "/(.*)",
-            "destination": "/index.html",
-            "status": 503
+            "src": "/(.*)",
+            "status": 503,
+            "dest": "/index.html"
         }
     ]
 }
